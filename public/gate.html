@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vào phòng • Kỷ niệm của đôi ta 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="bg-decor" aria-hidden="true"></div>
+    <div class="bg-effects" aria-hidden="true">
+      <div class="side-garden left" aria-hidden="true">
+        <div class="plant p1"><span class="leaf"></span><span class="leaf2"></span></div>
+        <div class="plant p2"><span class="leaf"></span><span class="leaf2"></span></div>
+        <div class="plant p3"><span class="leaf"></span><span class="leaf2"></span></div>
+      </div>
+      <div class="side-garden right" aria-hidden="true">
+        <div class="plant p1"><span class="leaf"></span><span class="leaf2"></span></div>
+        <div class="plant p2"><span class="leaf"></span><span class="leaf2"></span></div>
+        <div class="plant p3"><span class="leaf"></span><span class="leaf2"></span></div>
+      </div>
+    </div>
+
+    <section class="gate">
+      <div class="gate-card card-bounce">
+        <div class="gate-emoji" aria-hidden="true">💗</div>
+        <h1>Kỷ niệm của đôi ta</h1>
+        <p class="gate-hint">Cùng nhập một mã phòng bí mật — chỉ hai đứa mình biết thôi nhé.</p>
+
+        <label class="label" for="roomCode">Mã phòng</label>
+        <input id="roomCode" type="text" maxlength="32" placeholder="ví dụ: tim-nhau-2026" autocomplete="off" />
+
+        <label class="label" for="displayName">Tên hiển thị khi chat</label>
+        <input id="displayName" type="text" maxlength="40" placeholder="ví dụ: Bé iu" />
+
+        <label class="label" for="roomPass">Mật khẩu phòng</label>
+        <input id="roomPass" type="password" maxlength="64" placeholder="ít nhất 4 ký tự" />
+
+        <button type="button" id="enterBtn" class="btn btn-primary">Vào phòng</button>
+        <p id="gateError" class="error" hidden></p>
+      </div>
+    </section>
+
+    <script type="module" src="/gate.js"></script>
+    <script type="module" src="/effects.js"></script>
+  </body>
+</html>

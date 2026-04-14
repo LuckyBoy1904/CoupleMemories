@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phòng • Kỷ niệm của đôi ta 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="room-body">
+    <div class="bg-decor" aria-hidden="true"></div>
+    <div class="bg-effects" aria-hidden="true">
+      <div class="side-garden left" aria-hidden="true">
+        <div class="plant p1"><span class="leaf"></span><span class="leaf2"></span></div>
+        <div class="plant p2"><span class="leaf"></span><span class="leaf2"></span></div>
+        <div class="plant p3"><span class="leaf"></span><span class="leaf2"></span></div>
+      </div>
+      <div class="side-garden right" aria-hidden="true">
+        <div class="plant p1"><span class="leaf"></span><span class="leaf2"></span></div>
+        <div class="plant p2"><span class="leaf"></span><span class="leaf2"></span></div>
+        <div class="plant p3"><span class="leaf"></span><span class="leaf2"></span></div>
+      </div>
+    </div>
+
+    <main class="app app-room">
+      <header class="topbar" id="topbar">
+        <div class="brand">
+          <span class="brand-icon" aria-hidden="true">🌸</span>
+          <div>
+            <strong>Kỷ niệm</strong>
+            <span class="room-pill" id="roomLabel"></span>
+          </div>
+        </div>
+        <nav class="tabs" role="tablist">
+          <button type="button" class="tab active" data-tab="memories" role="tab" aria-selected="true">Ảnh &amp; video</button>
+          <button type="button" class="tab" data-tab="notes" role="tab" aria-selected="false">Lời nhắn</button>
+          <button type="button" class="tab" data-tab="chat" role="tab" aria-selected="false">Chat 💬</button>
+        </nav>
+        <a href="/gate.html" id="leaveBtn" class="btn btn-ghost" style="text-decoration:none;display:inline-block">Đổi phòng</a>
+      </header>
+
+      <section id="panel-memories" class="panel active" role="tabpanel">
+        <div class="toolbar">
+          <div class="filter-row">
+            <div class="seg" role="group" aria-label="Lọc loại">
+              <button type="button" class="seg-btn active" data-filter-type="all">Tất cả</button>
+              <button type="button" class="seg-btn" data-filter-type="image">Ảnh</button>
+              <button type="button" class="seg-btn" data-filter-type="video">Video</button>
+            </div>
+            <input id="memSearch" class="grow" type="text" maxlength="80" placeholder="Tìm theo ghi chú..." />
+            <div class="date-range" aria-label="Lọc theo khoảng ngày">
+              <div class="date-wrap">
+                <input id="memDateFrom" class="date date-native" type="date" aria-label="Từ ngày" />
+                <div id="memDateFromDisplay" class="date date-display" aria-hidden="true">Từ dd/MM/yyyy</div>
+                <button type="button" class="date-icon" data-date-open="memDateFrom" aria-label="Chọn từ ngày">📅</button>
+              </div>
+              <span class="date-sep" aria-hidden="true">→</span>
+              <div class="date-wrap">
+                <input id="memDateTo" class="date date-native" type="date" aria-label="Đến ngày" />
+                <div id="memDateToDisplay" class="date date-display" aria-hidden="true">Đến dd/MM/yyyy</div>
+                <button type="button" class="date-icon" data-date-open="memDateTo" aria-label="Chọn đến ngày">📅</button>
+              </div>
+            </div>
+            <div class="dd" data-dd="memSort">
+              <button type="button" class="dd-btn" aria-haspopup="menu" aria-expanded="false">
+                <span class="dd-label">Mới nhất</span>
+                <span class="dd-caret" aria-hidden="true">▾</span>
+              </button>
+              <div class="dd-menu" role="menu" hidden>
+                <button type="button" class="dd-item" role="menuitem" data-value="desc">Mới nhất</button>
+                <button type="button" class="dd-item" role="menuitem" data-value="asc">Cũ nhất</button>
+              </div>
+            </div>
+          </div>
+          <div class="upload-row">
+            <label class="btn btn-secondary file-btn">
+              Thêm ảnh / video
+              <input id="mediaInput" type="file" accept="image/*,video/*" multiple hidden />
+            </label>
+            <input id="mediaCaption" type="text" class="grow" maxlength="500" placeholder="Ghi chú ngắn (tuỳ chọn)..." />
+          </div>
+        </div>
+        <div class="panel-scroll">
+          <div id="uploadSlot" class="memories-grid"></div>
+          <div id="memoriesGrid" class="memories-grid"></div>
+          <div id="memoriesLoadingSlot" class="memories-grid"></div>
+          <p id="memoriesEmpty" class="empty-state">Chưa có kỷ niệm nào — thêm ảnh hoặc video đầu tiên nhé!</p>
+        </div>
+      </section>
+
+      <section id="panel-notes" class="panel" role="tabpanel" hidden>
+        <div class="toolbar">
+          <div class="filter-row">
+            <input id="noteSearch" class="grow" type="text" maxlength="80" placeholder="Tìm trong lời nhắn..." />
+            <div class="date-range" aria-label="Lọc theo khoảng ngày">
+              <div class="date-wrap">
+                <input id="noteDateFrom" class="date date-native" type="date" aria-label="Từ ngày" />
+                <div id="noteDateFromDisplay" class="date date-display" aria-hidden="true">Từ dd/MM/yyyy</div>
+                <button type="button" class="date-icon" data-date-open="noteDateFrom" aria-label="Chọn từ ngày">📅</button>
+              </div>
+              <span class="date-sep" aria-hidden="true">→</span>
+              <div class="date-wrap">
+                <input id="noteDateTo" class="date date-native" type="date" aria-label="Đến ngày" />
+                <div id="noteDateToDisplay" class="date date-display" aria-hidden="true">Đến dd/MM/yyyy</div>
+                <button type="button" class="date-icon" data-date-open="noteDateTo" aria-label="Chọn đến ngày">📅</button>
+              </div>
+            </div>
+            <div class="dd" data-dd="noteSort">
+              <button type="button" class="dd-btn" aria-haspopup="menu" aria-expanded="false">
+                <span class="dd-label">Mới nhất</span>
+                <span class="dd-caret" aria-hidden="true">▾</span>
+              </button>
+              <div class="dd-menu" role="menu" hidden>
+                <button type="button" class="dd-item" role="menuitem" data-value="desc">Mới nhất</button>
+                <button type="button" class="dd-item" role="menuitem" data-value="asc">Cũ nhất</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form id="noteForm" class="note-form card-soft">
+          <label class="label" for="noteText">Lời nhắn cho nhau</label>
+          <textarea id="noteText" rows="3" maxlength="2000" placeholder="Viết điều ngọt ngào..."></textarea>
+          <button type="submit" class="btn btn-primary">Lưu lời nhắn</button>
+        </form>
+        <div class="panel-scroll">
+          <div id="notesList" class="notes-list"></div>
+          <div id="notesLoading" class="notes-loading" hidden>Đang tải thêm…</div>
+        </div>
+      </section>
+
+      <section id="panel-chat" class="panel" role="tabpanel" hidden>
+        <div class="chat-layout card-soft">
+          <div class="chat-tools">
+            <input id="chatSearch" type="text" maxlength="80" placeholder="Lọc tin nhắn theo từ khóa..." />
+          </div>
+          <div id="chatMessages" class="chat-messages"></div>
+          <form id="chatForm" class="chat-form">
+            <input id="chatInput" type="text" maxlength="2000" placeholder="Nhắn một điều dễ thương..." autocomplete="off" />
+            <button type="submit" class="btn btn-primary">Gửi</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <div id="lightbox" class="lightbox" hidden>
+      <div class="lightbox-backdrop" data-close="1"></div>
+      <div class="lightbox-card" role="dialog" aria-modal="true" aria-label="Xem ảnh">
+        <button type="button" class="lightbox-nav left" data-nav="-1" aria-label="Ảnh trước">‹</button>
+        <button type="button" class="lightbox-nav right" data-nav="1" aria-label="Ảnh tiếp">›</button>
+        <button type="button" class="lightbox-close" data-close="1" aria-label="Đóng">×</button>
+        <img id="lightboxImg" alt="Ảnh kỷ niệm" />
+        <div id="lightboxCap" class="lightbox-cap"></div>
+      </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js" crossorigin="anonymous"></script>
+    <script type="module" src="/room.js"></script>
+    <script type="module" src="/effects.js"></script>
+  </body>
+</html>
